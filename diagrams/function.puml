@@ -1,0 +1,65 @@
+@startuml
+
+interface Function{
+    solve() : Int
+    accept(visitor: Visitor):
+}
+
+
+interface Operation {
+    solveOperation()
+}
+
+class Addition implements Operation{
+    solveOperation()
+    - leftNode : Function
+    - rightNode : Function
+}
+class Subtraction implements Operation{
+    solveOperation()
+    - leftNode : Function
+    - rightNode : Function
+}
+class Multiplication implements Operation{
+    solveOperation()
+    - leftNode : Function
+    - rightNode : Function
+}
+class Division implements Operation {
+    solveOperation()
+    - divisorNode : Function
+    - dividendNode : Function
+}
+class Power implements Operation {
+    solveOperation()
+    - leafFunction : Function
+}
+class SquareRoot implements Operation{
+    solveOperation()
+    - leafFunction : Function
+}
+class Module implements Operation{
+    solveOperation()
+    - leafFunction : Function
+}
+class Variable implements Operation{
+    name: String
+    solveOperation()
+}
+
+class Value implements Operation{
+    value: Double
+    solveOperation()
+}
+
+interface Visitor{
+    visit(variable: Variable)
+    visit(value: Value)
+    visit(operation: Operation)
+}
+
+'A function is made of some operations, like sum, subs, multiplication ...'
+Function --* Operation
+
+Visitor -> Function
+@enduml
