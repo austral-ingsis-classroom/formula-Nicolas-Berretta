@@ -32,7 +32,8 @@ class Division implements Operation {
 }
 class Power implements Operation {
     solveOperation()
-    - leafFunction : Function
+    - baseNode: Function;
+    - exponentNode: Function;
 }
 class SquareRoot implements Operation{
     solveOperation()
