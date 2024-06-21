@@ -5,20 +5,20 @@ import edu.austral.ingsis.math.visitor.Visitor;
 import edu.austral.ingsis.math.operation.Operand;
 
 public class Module implements SingleOperation {
-    public final Function leafNode;
+    public final Function nodeFunction;
 
-    public Module(Function leafNode){
-        this.leafNode = leafNode;
+    public Module(Function nodeFunction){
+        this.nodeFunction = nodeFunction;
     }
 
     @Override
     public Double solve() {
-        return Math.abs(leafNode.solve());
+        return Math.abs(nodeFunction.solve());
     }
 
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitSingleOperation(this);
+        return visitor.visit(this);
     }
 
     @Override
@@ -29,6 +29,11 @@ public class Module implements SingleOperation {
     @Override
     public Operand getClosingOperand() {
         return Operand.MODULE;
+    }
+
+    @Override
+    public Function getNodeFunction() {
+        return nodeFunction;
     }
 
 //    @Override

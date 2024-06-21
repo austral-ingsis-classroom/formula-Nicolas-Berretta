@@ -37,6 +37,6 @@ public class Power implements ComposedOperation {
     //  base     exponent
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitComposedOperation(this);
+        return visitor.visit(this);
     }
 }

@@ -5,18 +5,19 @@ import edu.austral.ingsis.math.visitor.Visitor;
 import edu.austral.ingsis.math.operation.Operand;
 
 public class SquareRoot implements SingleOperation {
-    private final Function leafNode;
+    private final Function nodeFunction;
 
     public SquareRoot(Function leafNode) {
-        this.leafNode = leafNode;
+        this.nodeFunction = leafNode;
     }
     @Override
     public Double solve() {
-        return Math.sqrt(leafNode.solve());
+        return Math.sqrt(nodeFunction.solve());
     }
+
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitSingleOperation(this);
+        return visitor.visit(this);
     }
 
     @Override
@@ -27,5 +28,10 @@ public class SquareRoot implements SingleOperation {
     @Override
     public Operand getClosingOperand() {
         return Operand.SQRT_CLOSE;
+    }
+
+    @Override
+    public Function getNodeFunction() {
+        return nodeFunction;
     }
 }

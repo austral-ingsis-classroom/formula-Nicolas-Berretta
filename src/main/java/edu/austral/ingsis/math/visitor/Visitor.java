@@ -6,8 +6,8 @@ import edu.austral.ingsis.math.operation.composedOperation.ComposedOperation;
 import edu.austral.ingsis.math.operation.singleOperation.SingleOperation;
 
 public interface Visitor<T> {
-    T visitComposedOperation(ComposedOperation operation);
-    T visitSingleOperation(SingleOperation operation);
-    T visitVariable(Variable variable);
-    T visitValue(Value value);
+    T visit(ComposedOperation operation);
+    T visit(SingleOperation operation);
+    T visit(Variable variable);
+    T visit(Value value);
 }

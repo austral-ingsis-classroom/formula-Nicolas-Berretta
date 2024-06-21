@@ -23,6 +23,6 @@ public class Variable implements Function{
 
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitVariable(this);
+        return visitor.visit(this);
     }
 }

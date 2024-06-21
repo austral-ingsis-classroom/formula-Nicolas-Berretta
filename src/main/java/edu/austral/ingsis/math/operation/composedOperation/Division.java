@@ -37,7 +37,7 @@ public class Division implements ComposedOperation {
 
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitComposedOperation(this);
+        return visitor.visit(this);
     }
 }
 

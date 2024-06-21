@@ -18,6 +18,6 @@ public class Value implements Function{
 
     @Override
     public <T> T accept(Visitor<T> visitor) {
-        return visitor.visitValue(this);
+        return visitor.visit(this);
     }
 }
