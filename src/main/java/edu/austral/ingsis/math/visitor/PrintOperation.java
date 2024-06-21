@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math.visitor;
 
+import edu.austral.ingsis.math.Function;
 import edu.austral.ingsis.math.operation.Value;
 import edu.austral.ingsis.math.operation.Variable;
 import edu.austral.ingsis.math.operation.composedOperation.ComposedOperation;
@@ -29,6 +30,6 @@ public class PrintOperation implements Visitor<String>{
 
     @Override
     public String visit(Value value) {
-        return value.solve().toString();
+        return String.format("%.0f", value.solve());
     }
 }

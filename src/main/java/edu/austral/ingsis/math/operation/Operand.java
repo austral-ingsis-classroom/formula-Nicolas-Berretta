@@ -1,15 +1,17 @@
 package edu.austral.ingsis.math.operation;
 
 public enum Operand {
-    ADDITION("+"),
-    DIVISION("/"),
-    MULTIPLICATION("*"),
-    POWER("^"),
-    SUBTRACTION("-"),
+    ADDITION(" + "),
+    DIVISION(" / "),
+    MULTIPLICATION(" * "),
+    POWER(" ^ "),
+    SUBTRACTION(" - "),
     //Single operations
     SQRT_OPEN("sqrt("),
     SQRT_CLOSE(")"),
-    MODULE("|");
+    MODULE("|"),
+    OPEN_PARENS("("),
+    CLOSE_PARENS(")");
 
     private final String operandSymbol;
     Operand(String operandSymbol) {
