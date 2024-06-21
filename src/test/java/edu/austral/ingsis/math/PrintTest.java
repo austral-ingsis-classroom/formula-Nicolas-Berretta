@@ -18,7 +18,7 @@ public class PrintTest {
   public void shouldPrintFunction1() {
     PrintOperation printOperation = new PrintOperation();
     final String expected = "1 + 6";
-    Function function = new Addition(new Value(1.0),new Value(6.0));
+    Function function = new Addition(new Value(1.0), new Value(6.0));
     final String result = function.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
@@ -28,7 +28,7 @@ public class PrintTest {
   public void shouldPrintFunction2() {
     PrintOperation printOperation = new PrintOperation();
     final String expected = "12 / 2";
-    Function function = new Division(new Value(12.0),new Value(2.0));
+    Function function = new Division(new Value(12.0), new Value(2.0));
     final String result = function.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
@@ -49,8 +49,8 @@ public class PrintTest {
   public void shouldPrintFunction4() {
     PrintOperation printOperation = new PrintOperation();
     final String expected = "(27 / 6) ^ 2";
-    Function division = new AddParentheses(new Division(new Value(27.0),new Value(6.0)));
-    Function multiplication = new Power(division,new Value(2.0));
+    Function division = new AddParentheses(new Division(new Value(27.0), new Value(6.0)));
+    Function multiplication = new Power(division, new Value(2.0));
     final String result = multiplication.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
@@ -61,7 +61,7 @@ public class PrintTest {
     final String expected = "|value| - 8";
     PrintOperation printOperation = new PrintOperation();
     Function module = new Module(new Variable("value", new Value(8.0)));
-    Function subtraction  = new Subtraction(module, new Value(8.0));
+    Function subtraction = new Subtraction(module, new Value(8.0));
     final String result = subtraction.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
@@ -71,8 +71,8 @@ public class PrintTest {
   public void shouldPrintFunction7() {
     final String expected = "|value| - 8";
     PrintOperation printOperation = new PrintOperation();
-    Function module = new Module(new Variable("value", new Value(- 8.0)));
-    Function subtraction  = new Subtraction(module, new Value(8.0));
+    Function module = new Module(new Variable("value", new Value(-8.0)));
+    Function subtraction = new Subtraction(module, new Value(8.0));
     final String result = subtraction.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
@@ -82,8 +82,9 @@ public class PrintTest {
   public void shouldPrintFunction8() {
     final String expected = "(5 - i) * 8";
     PrintOperation printOperation = new PrintOperation();
-    Function subtraction  = new AddParentheses(new Subtraction(new Value(5.0), new Variable("i",new Value(2.0))));
-    Function multiplication  = new Multiplication(subtraction, new Value(8.0));
+    Function subtraction =
+        new AddParentheses(new Subtraction(new Value(5.0), new Variable("i", new Value(2.0))));
+    Function multiplication = new Multiplication(subtraction, new Value(8.0));
     final String result = multiplication.accept(printOperation);
     assertThat(result, equalTo(expected));
   }
