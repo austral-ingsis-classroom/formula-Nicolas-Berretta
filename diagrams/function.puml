@@ -1,66 +1,96 @@
 @startuml
 
 interface Function{
-    solve() : Int
-    accept(visitor: Visitor):
+    solve() : Double
+    accept(visitor: Visitor): T
+    'use T for generics'
 }
 
 
-interface Operation {
-    solveOperation()
+interface ComposedOperation implements Function{
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
+}
+interface SingleOperation implements Function{
+    getNodeFunction(): Function
+    getOpeningOperand(): Operand
+    getClosingOperand(): Operand
 }
 
-class Addition implements Operation{
-    solveOperation()
-    - leftNode : Function
-    - rightNode : Function
+class Addition implements ComposedOperation{
+    solve() : Double
+    accept(visitor: Visitor): T
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
 }
-class Subtraction implements Operation{
-    solveOperation()
-    - leftNode : Function
-    - rightNode : Function
+
+class Subtraction implements ComposedOperation{
+    solve() : Double
+    accept(visitor: Visitor): T
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
 }
-class Multiplication implements Operation{
-    solveOperation()
-    - leftNode : Function
-    - rightNode : Function
+
+class Multiplication implements ComposedOperation{
+    solve() : Double
+    accept(visitor: Visitor): T
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
 }
-class Division implements Operation {
-    solveOperation()
-    - divisorNode : Function
-    - dividendNode : Function
+
+class Division implements ComposedOperation {
+    solve() : Double
+    accept(visitor: Visitor): T
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
 }
-class Power implements Operation {
-    solveOperation()
-    - baseNode: Function;
-    - exponentNode: Function;
+
+class Power implements ComposedOperation {
+    solve() : Double
+    accept(visitor: Visitor): T
+    getOperand(): Operand
+    getLeftNode() : Function
+    getRightNode(): Function
 }
-class SquareRoot implements Operation{
-    solveOperation()
-    - leafFunction : Function
+class SquareRoot implements SingleOperation{
+    solve() : Double
+    accept(visitor: Visitor): T
+    getNodeFunction(): Function
+    getOpeningOperand(): Operand
+    getClosingOperand(): Operand
 }
-class Module implements Operation{
-    solveOperation()
-    - leafFunction : Function
+class Module implements SingleOperation{
+    solve() : Double
+    accept(visitor: Visitor): T
+    getNodeFunction(): Function
+    getOpeningOperand(): Operand
+    getClosingOperand(): Operand
 }
-class Variable implements Operation{
+class Variable implements Function{
+    solve() : Double
+    accept(visitor: Visitor): T
     name: String
-    solveOperation()
 }
 
-class Value implements Operation{
+class Value implements Function{
+    solve() : Double
+    accept(visitor: Visitor): T
     value: Double
-    solveOperation()
 }
 
 interface Visitor{
     visit(variable: Variable)
     visit(value: Value)
-    visit(operation: Operation)
+    visit(operation: ComposedOperation)
+    visit(operation: SingleOperation)
 }
 
 'A function is made of some operations, like sum, subs, multiplication ...'
-Function --* Operation
 
 Visitor -> Function
 @enduml
